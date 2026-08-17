@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../options/options.css" />
+    <style>
+      body { width: 268px; padding: 16px; }
+      h1 { font-size: 20px; margin: 6px 0 4px; }
+      .masthead { padding-bottom: 12px; }
+      .stack { display: grid; gap: 8px; margin-top: 14px; }
+      .stack button { width: 100%; }
+      .status { margin-top: 10px; font-size: 11px; }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <span class="eyebrow">Second opinion</span>
+      <h1>Read the page, not the pitch</h1>
+    </header>
+    <p class="status" id="who"></p>
+    <div class="stack">
+      <button type="button" class="primary" id="open">Open the panel</button>
+      <button type="button" class="ghost" id="settings">Model and keys</button>
+    </div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

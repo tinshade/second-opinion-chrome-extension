@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Second Opinion — settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="masthead">
+        <span class="eyebrow">Second opinion</span>
+        <h1>Bring your own model</h1>
+        <p class="sub">Keys are stored with <code>chrome.storage.local</code> on this machine only. They are sent to the provider you pick and nowhere else — there is no server in the middle.</p>
+      </header>
+
+      <section class="group">
+        <h2 class="h">Provider</h2>
+        <div class="providers" id="providers"></div>
+      </section>
+
+      <section class="group">
+        <h2 class="h">Credentials</h2>
+
+        <label class="field" id="keyField">
+          <span class="label">API key <a id="keyLink" href="#" target="_blank" rel="noopener">where to get one</a></span>
+          <div class="row">
+            <input type="password" id="apiKey" autocomplete="off" spellcheck="false" placeholder="paste key" />
+            <button type="button" class="ghost small" id="reveal">Show</button>
+          </div>
+        </label>
+
+        <label class="field" id="urlField" hidden>
+          <span class="label">Ollama address</span>
+          <input type="text" id="ollamaUrl" spellcheck="false" placeholder="http://localhost:11434" />
+          <span class="hint">Ollama refuses browser requests by default. Start it with <code>OLLAMA_ORIGINS=chrome-extension://*</code> set.</span>
+        </label>
+
+        <label class="field">
+          <span class="label">Model</span>
+          <input type="text" id="model" spellcheck="false" />
+          <span class="hint" id="modelHint"></span>
+        </label>
+
+        <label class="field">
+          <span class="label">Reviews to send per analysis</span>
+          <input type="number" id="maxReviews" min="4" max="60" step="1" />
+          <span class="hint">More reviews mean better evidence and a larger prompt. 20 is a reasonable balance.</span>
+        </label>
+      </section>
+
+      <div class="actions">
+        <button type="button" class="primary" id="save">Save settings</button>
+        <button type="button" class="ghost" id="test">Test connection</button>
+      </div>
+      <p class="status" id="status" role="status"></p>
+    </main>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

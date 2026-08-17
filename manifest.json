@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Second Opinion — Amazon Shopping Assistant",
+  "version": "0.1.0",
+  "description": "Reads an Amazon product page and returns an evidence-tagged pros and cons analysis using your own LLM key.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://api.anthropic.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.deepseek.com/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.amazon.com/*",
+        "*://*.amazon.in/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.fr/*",
+        "*://*.amazon.it/*",
+        "*://*.amazon.es/*",
+        "*://*.amazon.nl/*",
+        "*://*.amazon.se/*",
+        "*://*.amazon.pl/*",
+        "*://*.amazon.ca/*",
+        "*://*.amazon.com.mx/*",
+        "*://*.amazon.com.br/*",
+        "*://*.amazon.com.au/*",
+        "*://*.amazon.co.jp/*",
+        "*://*.amazon.sg/*",
+        "*://*.amazon.ae/*",
+        "*://*.amazon.sa/*"
+      ],
+      "js": ["src/content/scraper.js", "src/content/panel.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/content/panel.css"],
+      "matches": ["*://*.amazon.com/*", "*://*.amazon.in/*", "*://*.amazon.co.uk/*", "*://*.amazon.de/*", "*://*.amazon.fr/*", "*://*.amazon.it/*", "*://*.amazon.es/*", "*://*.amazon.nl/*", "*://*.amazon.se/*", "*://*.amazon.pl/*", "*://*.amazon.ca/*", "*://*.amazon.com.mx/*", "*://*.amazon.com.br/*", "*://*.amazon.com.au/*", "*://*.amazon.co.jp/*", "*://*.amazon.sg/*", "*://*.amazon.ae/*", "*://*.amazon.sa/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Second Opinion"
+  },
+  "options_page": "src/options/options.html"
+}
